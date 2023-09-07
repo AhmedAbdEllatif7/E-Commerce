@@ -13,15 +13,13 @@ Welcome to our Laravel-based E-commerce application! This versatile platform is 
 
 - **Admin Panel:** Effortlessly manage your online store with a dedicated admin panel. Add, edit, or remove products, review orders, and more.
 
-- **Customer Panel:** Provide a personalized experience for customers with access to their order history, profile management, and wishlist functionality.
+- **Customer Panel:** Provide a personalized experience for customers with access to their order history, and wishlist functionality.
 
 - **Product Search:** Enhance the shopping experience with a robust product search feature, enabling customers to find products quickly and easily.
 
 - **Wishlist:** Allow customers to curate a wishlist of desired items, making it convenient for them to return and complete their purchases.
 
-- **Responsive Design:** Ensure your E-commerce site looks and works beautifully across various devices, including desktops, tablets, and mobile phones.
-
-- **Product Reviews and Ratings:** Enable customers to provide feedback and ratings on products, enhancing trust and aiding purchase decisions.
+- **Responsive Design:** Ensure your E-commerce site looks and works beautifully.
 
 - **Shopping Cart:** Implement a fully functional shopping cart system, allowing customers to add, remove, and modify their selected items.
 
@@ -30,6 +28,12 @@ Welcome to our Laravel-based E-commerce application! This versatile platform is 
 - **User-friendly Checkout:** Simplify the checkout process with a user-friendly and intuitive interface.
 
 - **Product Categories:** Organize products into categories, making it easier for customers to explore and find what they need.
+
+- **Admin Notifications:** Our application ensures that administrators are notified when a customer successfully pays for their order. This notification system enhances transparency and allows administrators to respond promptly to customer orders.
+ 
+- **Product Filtering by Price:** To help customers find the right products within their budget, we've implemented a powerful product filtering feature. Customers can filter products by price range, ensuring they discover items that meet their budget requirements.
+
+
 
 ## Technologies Used
 
