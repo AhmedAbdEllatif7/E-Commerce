@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\Events\PaidSuccess;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Customer_adderss;
@@ -62,6 +63,7 @@ class PayPalController extends Controller
         return response()->json('Payment cancelled' , '402');
     }
 
+
     public function success(Request $request)
     {
         $provider = new ExpressCheckout;
@@ -69,28 +71,11 @@ class PayPalController extends Controller
 
         if (in_array(strtoupper($response['ACK']) , ['SUCCESS' , 'SUCCESSWITHWARNING'])){
 
-            $id = auth()->guard('customer')->user()->id;
+            $userId = auth()->guard('customer')->user()->id;
+            $orders = Order::where('customer_id', $userId)->get();
 
-            $orders = Order::where('customer_id', $id)->get();
+            event(new PaidSuccess($userId, $orders));
 
-            foreach ($orders as $order) {
-                $order->update([
-                    'payment_status' => 1,
-                    'address_title' => $order->customerAddress->address_title,
-                ]);
-                $order->delete(); // Delete the order
-            }
-
-            $customer = Customer::find($id);
-            if ($customer) {
-                $customer->unreadNotifications->markAsRead();
-            }
-
-            $admins = User::all();
-            $message = $customer->name . ' paid his orders';
-            foreach ($orders as $order) {
-                Notification::send($admins, new CartNotification($order->id, $customer->name, $order->products->name, $message));
-            }
             return redirect()->route('home')->with([
                 'success' => 'Paid successfully , thank you we will receive the order '
             ]);
